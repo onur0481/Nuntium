@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nuntium/feature/auth/authentication_view.dart';
+import 'package:nuntium/feature/home/home_view.dart';
 import 'package:nuntium/product/constants/index.dart';
+import 'package:nuntium/product/initialize/app_builder.dart';
 import 'package:nuntium/product/initialize/app_theme.dart';
 import 'package:nuntium/product/initialize/application_start.dart';
 
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => AppBuilder(child).build(),
       debugShowCheckedModeBanner: false,
       title: StringConstant.appName,
       theme: AppTheme(context).theme,
       home: const Scaffold(
-        body: AuthenticationView(),
+        body: HomeView(),
       ),
     );
   }

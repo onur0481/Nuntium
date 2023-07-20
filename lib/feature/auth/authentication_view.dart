@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:nuntium/feature/auth/authentication_provider.dart';
 import 'package:nuntium/product/constants/index.dart';
+import 'package:nuntium/product/widgets/text/title_text.dart';
 
 class AuthenticationView extends ConsumerStatefulWidget {
   const AuthenticationView({super.key});
@@ -90,18 +91,10 @@ class _Header extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          StringConstant.loginWelcomeBack,
-          style: context.general.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const TitleText(value: StringConstant.loginWelcomeBack),
         Padding(
           padding: context.padding.onlyTopLow,
-          child: Text(
-            StringConstant.loginDescription,
-            style: context.general.textTheme.titleMedium,
-          ),
+          child: const TitleText(value: StringConstant.loginDescription),
         ),
       ],
     );

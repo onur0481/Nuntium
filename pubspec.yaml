@@ -40,6 +40,8 @@ dependencies:
   flutter_riverpod: ^2.3.6
   kartal: ^3.0.1
   equatable: ^2.0.5
+  responsive_framework: ^1.1.0
+  responsive_builder: ^0.7.0
 
   #Firebase
   cloud_firestore: ^4.8.2
