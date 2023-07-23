@@ -5,6 +5,7 @@ import 'package:kartal/kartal.dart';
 
 import 'package:nuntium/feature/home/home_provider.dart';
 import 'package:nuntium/feature/home/sub_view/home_search_delegate.dart';
+import 'package:nuntium/feature/home_create/home_create_view.dart';
 import 'package:nuntium/product/constants/index.dart';
 import 'package:nuntium/product/models/tag.dart';
 import 'package:nuntium/product/widgets/card/home_news_card.dart';
@@ -51,6 +52,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final response = await context.route
+                .navigateToPage<bool?>(const HomeCreate(), type: SlideType.TOP);
+            if (response ?? false) {
+              await ref.read(_homeProvider.notifier).fetchAndLoad();
+            }
+          },
+          child: const Icon(Icons.add),
+        ),
         body: Stack(
           children: [
             ListView(
@@ -80,27 +91,30 @@ class _CustomField extends ConsumerWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return TextField(
-      controller: controller,
-      onTap: () async {
-        final response = await showSearch<Tag?>(
-          context: context,
-          delegate: HomeSearchDelegate(
-            ref.read(_homeProvider.notifier).fullTagList,
+    return Padding(
+      padding: context.padding.onlyTopMedium,
+      child: TextField(
+        controller: controller,
+        onTap: () async {
+          final response = await showSearch<Tag?>(
+            context: context,
+            delegate: HomeSearchDelegate(
+              ref.read(_homeProvider.notifier).fullTagList,
+            ),
+          );
+          ref
+              .read(_homeProvider.notifier)
+              .updateSelectedTag(response ?? const Tag());
+        },
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.search),
+          suffixIcon: Icon(Icons.mic_outlined),
+          fillColor: ColorConstant.grayLighter,
+          filled: true,
+          hintText: StringConstant.homeSearch,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
           ),
-        );
-        ref
-            .read(_homeProvider.notifier)
-            .updateSelectedTag(response ?? const Tag());
-      },
-      decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.search),
-        suffixIcon: Icon(Icons.mic_outlined),
-        fillColor: ColorConstant.grayLighter,
-        filled: true,
-        hintText: StringConstant.homeSearch,
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
         ),
       ),
     );

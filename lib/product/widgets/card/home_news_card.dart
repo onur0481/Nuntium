@@ -29,7 +29,7 @@ class HomeNewsCard extends StatelessWidget {
           child: Padding(
             padding: context.padding.low,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
                   onPressed: () {},
@@ -41,7 +41,7 @@ class HomeNewsCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: context.padding.low,
+                  padding: context.padding.normal,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

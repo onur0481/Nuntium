@@ -20,4 +20,10 @@ class StringConstant {
   static const String homeHorizontalTitle = 'POLITICS';
   static const String homehorizontalDescription =
       'The latest situation in the presidential election';
+
+  //Component
+  static const String dropdownHint = 'Select Category';
+  static const String textfieldTitle = 'Title';
+  static const String buttonCreate = 'Create';
+  static const String addNewItem = 'Add New Item';
 }

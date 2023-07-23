@@ -8,6 +8,15 @@ class FirebaseCustomException implements Exception {
   String toString() => '$this $description';
 }
 
+class ItemCreateException implements Exception {
+  ItemCreateException(this.description);
+
+  final String description;
+
+  @override
+  String toString() => '$this $description';
+}
+
 class VersionCustomException implements Exception {
   VersionCustomException(this.description);
 
